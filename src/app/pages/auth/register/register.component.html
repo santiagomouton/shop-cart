@@ -1,0 +1,8 @@
+<div class="shadow-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+        <formly-form [form]="form" [fields]="fields" [model]="iuser"></formly-form>
+        <button mat-button type="submit" class="b_grl b_primary">Crear cuenta</button>
+        <button mat-button class="b_grl" [routerLink]="['/login']">Cancelar</button>
+    </form>
+</div>
+

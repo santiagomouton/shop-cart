@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+$color: #c1c1c1
+$color-gray: #666
+$color_green: #03a767
+$color-greenlight: #76c893
+$color-blue: #0a4494
+$color-lightblue: #9AC9FB
+$color-red: #D00000
+$color-redlight: #DB5752
+
+
+body
+  max-height: 91vh
+  cursor: default
+  color: $color-gray
+
+.b_grl
+  display: flex
+  justify-content: center
+  align-content: center
+  padding: 0 30px 0 30px
+  height: auto
+  color: $color-gray
+//   transition: all 0.5s
+//   &:hover
+//     background-color: $color-gray
+//     color: #fff
+
+.b_primary
+  background-color: $color-blue
+  color: #fff
+  &:hover
+    background-color: $color-lightblue
+
+.b_danger
+  background-color: $color-red
+  color: #fff
+  &:hover
+    background-color: $color-redlight
+
+.b_success
+  background-color: $color-green
+  color: #fff
+  &:hover
+    background-color: $color-greenlight
+    
+.backscreen
+  background-color: $color
+
+.shadow-container
+  position: relative
+  top: 15%
+  margin-inline: auto
+  width: fit-content
+  background-color: rgb(250,250,250)
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3)
+  border-radius: 10px
+  padding: 30px
+

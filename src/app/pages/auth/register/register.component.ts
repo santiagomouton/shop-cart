@@ -10,7 +10,7 @@ import { IUser } from 'src/app/models/user.model';
 })
 export class RegisterComponent implements OnInit {
 
-  iuser = new IUser()
+  iuser: any;
 
   constructor() { }
 
@@ -27,6 +27,12 @@ export class RegisterComponent implements OnInit {
         label: 'Email',
         placeholder: 'Ingresa Email',
         required: true,
+        pattern: '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'       
+      },
+      validation: {
+        messages: {
+          pattern: (error, field: FormlyFieldConfig) => `"${field.formControl?.value}" no es un email valido`,
+        },
       }
     },
     {

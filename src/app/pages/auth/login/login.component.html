@@ -1,6 +1,6 @@
 <div class="shadow-container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
-        <formly-form [form]="form" [fields]="fields" [model]="iuser"></formly-form>
+        <formly-form [form]="form" [fields]="fields" [model]="iuser" [options]="options"></formly-form>
         <button mat-button type="submit" class="b_grl b_primary">Ingresar</button>
         <button mat-button class="b_grl b_success" [routerLink]="['/register']">Nuevo usuario</button>
     </form>

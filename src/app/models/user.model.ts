@@ -1,6 +1,7 @@
 
-export class IUser {
-    email: string = '';
-    password: string = '';
+export interface IUser {
+    uid?: string;
+    email: string;
+    password: string;
     name?: string
 }

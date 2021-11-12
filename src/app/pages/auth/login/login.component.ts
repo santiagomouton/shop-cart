@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { IUser } from 'src/app/models/user.model';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +12,15 @@ import { IUser } from 'src/app/models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  iuser = new IUser()
+  public iuser: IUser = {email: '', password: ''}
 
-  constructor() { }
+  constructor( private router: Router, private authService: AuthService ) { }
 
   ngOnInit(): void {
   }
 
   form = new FormGroup({});
+  options: FormlyFormOptions = {};
 
   fields: FormlyFieldConfig[] = [
     {
@@ -27,11 +30,11 @@ export class LoginComponent implements OnInit {
         label: 'Email',
         placeholder: 'Ingresa Email',
         required: true,
-        pattern: '/[a-zA-Z-._]+\@[a-zA-Z-._]+\.[a-zA-Z]+/g'
+        pattern: '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'       
       },
       validation: {
         messages: {
-          pattern: (error) => `No es un email valido`,
+          pattern: (error, field: FormlyFieldConfig) => `"${field.formControl?.value}" no es un email valido`,
         },
       },
     },
@@ -42,13 +45,17 @@ export class LoginComponent implements OnInit {
         label: 'Contraseña',
         placeholder: 'Ingresa contraseña',
         required: true,
+        minLength: 6
       }
     }
   ];
 
   onSubmit() {
     console.log(this.iuser);
-    
+    this.authService.login(this.iuser.email, this.iuser.password).then( res => {
+      console.log(res);
+      this.router.navigate(['/home']);
+    });
   }
 
 

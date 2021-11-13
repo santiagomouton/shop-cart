@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { NotifyService } from 'src/app/services/notify.service';
 
 
 @Component({
@@ -10,11 +11,12 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  products: Observable<any[]>;
+  products: any[] = [];
 
-  constructor( private firestore: AngularFirestore) {
-    this.products = this.firestore.collection('products').valueChanges();
-    console.log(this.products.subscribe(res => console.log(res)));
+  constructor( private firestore: AngularFirestore, public notify: NotifyService ) {
+    this.firestore.collection('products').valueChanges().subscribe( res => {
+      this.products = res; 
+    });
   }
 
   ngOnInit(): void {
@@ -24,5 +26,6 @@ export class HomeComponent implements OnInit {
       }
     }); */
   }
+
 
 }

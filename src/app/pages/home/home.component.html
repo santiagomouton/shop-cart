@@ -1,5 +1,9 @@
 <ol>
-    <li *ngFor="let product of products | async">
-        <app-cards img="/assets/images/placeholder-image.png" [name]="product.name" [description]="product.description"></app-cards>
+    <li *ngFor="let product of products">
+        <app-cards img="/assets/images/placeholder-image.png" [name]="product.name" [description]="product.description" ></app-cards>
     </li>
 </ol>
+
+<button (click)="this.notify.infoNotification('', 'asdadsd')">info</button>
+<button (click)="this.notify.successNotification('', 'success')">success</button>
+<button (click)="this.notify.warningNotification('', 'warning')">warning</button>

@@ -8,6 +8,8 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatIconModule } from '@angular/material/icon';
+import { NgxAwesomePopupModule, ToastNotificationConfigModule } from "@costlydeveloper/ngx-awesome-popup";
 
 // import { provideAuth,getAuth } from '@angular/fire/auth';
 // import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -28,6 +30,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardsComponent } from './components/cards/cards.component';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +54,11 @@ import { CardsComponent } from './components/cards/cards.component';
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AuthGuardModule
+    AuthGuardModule,
+    MatIconModule,
+    NgxAwesomePopupModule.forRoot(), // Essential, mandatory main module.
+    ToastNotificationConfigModule.forRoot() // Needed for instantiating toast notifications.
+
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),
     // provideDatabase(() => getDatabase()),

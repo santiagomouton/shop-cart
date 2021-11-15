@@ -1,13 +1,14 @@
 import { createAction, props } from "@ngrx/store"
-import { IUser } from "../../models/user"
+import { IUser } from "src/app/models/user.model"
 
-export const login = createAction('[Auth] Login',
-    props<{email: string, password: string}>()
-)
-export const register = createAction('[Auth] Register',
-    props<{name: string, email: string, password: string}>()
-)
+export const login = createAction('[Auth] Login', props<{user: IUser}>())
+export const loginSuccess = createAction('[Auth] Login Success', props<{data: any}>())
+export const loginError = createAction('[Auth] Login Failure', props<{error: any}>())
+
+export const register = createAction('[Auth] Register',props<{user: IUser}>())
+export const registerSuccess = createAction('[Auth] Register Success')
+export const registerError = createAction('[Auth] Register Failure',props<{error: any}>())
+
 export const logout = createAction('[Auth] Logout')
-
-export const ApiSuccess = createAction('[API] API Success', props<{ data: {}}>())
-export const ApiError = createAction('[API] API Error', props<{ error: {}}>())
+export const logoutSuccess = createAction('[Auth] Logout Success')
+export const logoutFailure = createAction('[Auth] Logout Failure',props<{error: any}>())

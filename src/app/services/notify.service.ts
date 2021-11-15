@@ -14,7 +14,7 @@ export class NotifyService {
 
   constructor() { }
 
-  setInitContent( title: string, message: string, notification: ToastNotificationInitializer ) {
+  private setInitContent( title: string, message: string, notification: ToastNotificationInitializer ) {
     notification.setTitle( title );
     notification.setMessage( message );
     notification.setConfig({
@@ -26,21 +26,21 @@ export class NotifyService {
     })
   }
 
-  infoNotification( title: string, message: string ): void {
+  public infoNotification( title: string, message: string ): void {
     let notification = new ToastNotificationInitializer();
     this.setInitContent( title, message, notification );
     notification.setConfig({ LayoutType: DialogLayoutDisplay.INFO })
     notification.openToastNotification$();
   }
 
-  successNotification( title: string, message: string ): void {
+  public successNotification( title: string, message: string ): void {
     let notification = new ToastNotificationInitializer();
     this.setInitContent( title, message, notification );
     notification.setConfig({ LayoutType: DialogLayoutDisplay.SUCCESS })
     notification.openToastNotification$();
   }
 
-  warningNotification( title: string, message: string ): void {
+  public warningNotification( title: string, message: string ): void {
     let notification = new ToastNotificationInitializer();
     this.setInitContent( title, message, notification );
     notification.setConfig({ LayoutType: DialogLayoutDisplay.WARNING })

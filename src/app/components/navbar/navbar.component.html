@@ -2,9 +2,12 @@
   <!-- <span class="spacer-left"></span> -->
   <img src="" alt="logo" class="logo-img" />
   <span class="spacer-right"></span>
-  <button mat-mini-fab class="cart-notify">
+  <a mat-mini-fab class="icon-btn" [routerLink]="['/home']">
+    <mat-icon>store</mat-icon>
+  </a>
+  <a mat-mini-fab class="icon-btn" [routerLink]="['/cart']">
     <mat-icon>shopping_cart</mat-icon>
-  </button>
+  </a>
   <button mat-raised-button class="b_grl" (click)="auth.logout()">
     Logout
   </button>

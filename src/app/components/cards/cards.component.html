@@ -1,7 +1,9 @@
 <div class="content">
-  <img [src]="img" />
-  <h3>{{ name }}</h3>
-  <p> {{ description }} </p>
-  <h6> ${{ price }} </h6>
+  <div class="card_figure">
+    <img [src]="product.image"/>
+  </div>
+  <h3>{{ product.name }}</h3>
+  <p> {{ product.description }} </p>
+  <h6> ${{ product.price }} </h6>
   <button mat-button class="b_grl">Agregar</button>
 </div>

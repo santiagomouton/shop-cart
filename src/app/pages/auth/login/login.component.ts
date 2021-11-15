@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { IUser } from 'src/app/models/user.model';
 import { AuthService } from '../../../services/auth.service';
+import { NotifyService } from '../../../services/notify.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   public iuser: IUser = {email: '', password: ''}
 
-  constructor( private router: Router, private authService: AuthService ) { }
+  constructor( private router: Router, private authService: AuthService, private message: NotifyService ) { }
 
   ngOnInit(): void {
   }
@@ -51,10 +52,13 @@ export class LoginComponent implements OnInit {
   ];
 
   onSubmit() {
-    console.log(this.iuser);
-    this.authService.login(this.iuser.email, this.iuser.password).then( res => {
-      console.log(res);
-      this.router.navigate(['/home']);
+    this.authService.login(this.iuser).then( res => {
+      if(res){
+        this.message.successNotification('Bienvenido', 'logueo exitoso')
+        this.router.navigate(['/home']);
+      } else {
+        this.message.infoNotification('Ooooops!', 'Usuario o contraseña incorrectos')
+      }
     });
   }
 

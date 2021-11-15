@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
     "@costlydeveloper/ngx-awesome-popup": "^2.0.4",
+    "@ngrx/effects": "^12.5.1",
     "@ngrx/store": "^12.5.1",
     "@ngx-formly/core": "^5.0.0",
     "@ngx-formly/material": "^5.0.0",

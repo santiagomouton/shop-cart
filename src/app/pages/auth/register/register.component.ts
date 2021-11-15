@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { IUser } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { NotifyService } from 'src/app/services/notify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +13,9 @@ import { IUser } from 'src/app/models/user.model';
 })
 export class RegisterComponent implements OnInit {
 
-  iuser: any;
+  iuser: IUser = { email: '', password: ''};
 
-  constructor() { }
+  constructor( private router: Router, private authService: AuthService, private message: NotifyService ) { }
 
   ngOnInit(): void {
   }
@@ -56,7 +59,15 @@ export class RegisterComponent implements OnInit {
   ];
 
   onSubmit() {
-    console.log(this.iuser);
+    this.authService.register(this.iuser)
+    .then( res => {
+      if(res) { 
+        this.message.successNotification('Registro exitoso!', 'Ahora puede acceder a nuestros productos')
+        this.router.navigate(['/login']);
+      } else {
+        this.message.infoNotification('Ooooops!', 'Ah ocurrido un error, intente mas tarde nuevamente')
+      }
+    })
   }
 
 }

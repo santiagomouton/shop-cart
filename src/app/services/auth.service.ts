@@ -3,10 +3,10 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { IUser } from '../models/user.model';
 // firebase
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import 'firebase/auth';
-// import firebase from '@firebase/app';
+import { NotifyService } from './notify.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,40 +14,37 @@ import 'firebase/auth';
 
 export class AuthService {
 
-  // API_URL: string = environment.BASE_API_URL;
-
   constructor(
     private afAuth: AngularFireAuth,
-    public router: Router
+    private router: Router,
+    private message: NotifyService
   ) { }
 
-  async logout() {
+  logout(): void {
     try {
-      await this.afAuth.signOut();
-      await this.router.navigate(['/login']);
+      this.afAuth.signOut().then( res => {
+        this.router.navigate(['/login'])
+      }).catch(error => this.message.infoNotification('Ooops!', 'Ah ocurrido un error'));
     }
     catch (error) {}
   }
 
-  async login(email: string, password: string): Promise<boolean> {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
+  async login( user: IUser ): Promise<any> {
+    return await this.afAuth.signInWithEmailAndPassword(user.email, user.password)
+  }
+
+  public checkAuth(): Observable<any> {
+    return this.afAuth.authState;
+  }
+
+  async register( user: IUser ): Promise<boolean> {
+    return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
     .then( res => {
-      console.log(res);
-      sessionStorage.setItem('user', JSON.stringify({uid: res.user?.uid}))
       return true;
     })
     .catch( err => {
-      console.log(err);
       return false;
     })
   }
 
-/*   register(name: string, email: string, password: string): Observable<any> {
-    localStorage.setItem('user', JSON.stringify({
-      name,
-      email,
-      password
-    }));
-    return this.http.post(`${this.API_URL}/register`, {name, email, password});
-  } */
 }

@@ -11,7 +11,7 @@ export const newCartSuccess = createAction('[POST] New Cart Success')
 export const newCartError   = createAction('[POST] New Cart Failure', props<{error: any}>())
 
 export const addProductToCart          = createAction('[PUT] Add Product to cart', props<{cart: Cart, product: Product}>())
-export const addProductToCartSuccess   = createAction('[PUT] Add Product to cart Success')//, props<{cart: Cart}>())
+export const addProductToCartSuccess   = createAction('[PUT] Add Product to cart Success')
 export const addProductToCartError     = createAction('[PUT] Add Product to cart Failure', props<{error: any}>())
 
 export const reduceProductFromCart       = createAction('[DELETE] Delete Product from cart', props<{cart: Cart, product: Product}>())

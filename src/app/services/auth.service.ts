@@ -21,12 +21,9 @@ export class AuthService {
   ) { }
 
   logout(): void {
-    try {
-      this.afAuth.signOut().then( res => {
-        this.router.navigate(['/login'])
-      }).catch(error => this.message.infoNotification('Ooops!', 'Ah ocurrido un error'));
-    }
-    catch (error) {}
+    this.afAuth.signOut().then( res => {
+      this.router.navigate(['/login'])
+    }).catch(error => this.message.infoNotification('Ooops!', 'Ah ocurrido un error'));
   }
 
   async login( user: IUser ): Promise<any> {

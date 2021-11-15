@@ -23,7 +23,7 @@ export const cartReducer = createReducer(initialState,
     on(actions.newCartSuccess, (state, action) => ({ ...state })),
     on(actions.newCartError, (state, action) => ({ cart: null, error: action.error })),
     /*STATES FOR ADD PRODUCT */
-    on(actions.addProductToCart, (state, action) => ({ cart: state.cart, error: null })),
+    on(actions.addProductToCart, (state, action) => ({ ...state })),
     on(actions.addProductToCartSuccess, (state, action) => ({ ...state })),
     on(actions.addProductToCartError, (state, action) => ({ cart: state.cart, error: action.error })),
     /*STATES FOR DELETE PRODUCT */

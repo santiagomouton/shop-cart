@@ -38,7 +38,7 @@ export class AuthEffects {
             })
         )
     })
-
+/* 
     logout$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(actions.logout),
@@ -49,6 +49,6 @@ export class AuthEffects {
                 )
             })
         )
-    })
+    }) */
 
 }

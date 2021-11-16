@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from '@angular/material/icon';
-import { NgxAwesomePopupModule, ToastNotificationConfigModule } from "@costlydeveloper/ngx-awesome-popup";
+import { ConfirmBoxConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule } from "@costlydeveloper/ngx-awesome-popup";
 
 // import { provideAuth,getAuth } from '@angular/fire/auth';
 // import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -38,6 +38,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { CartComponent } from './pages/cart/cart.component';
     HomeComponent,
     NavbarComponent,
     CardsComponent,
-    CartComponent
+    CartComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -67,9 +69,9 @@ import { CartComponent } from './pages/cart/cart.component';
     MatIconModule,
     NgxAwesomePopupModule.forRoot(),         // Essential, mandatory main module.
     ToastNotificationConfigModule.forRoot(), // Needed for instantiating toast notifications.
+    ConfirmBoxConfigModule.forRoot(),
     StoreModule.forRoot( reducers ),
     EffectsModule.forRoot(effectsArr),
-
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),
     // provideDatabase(() => getDatabase()),

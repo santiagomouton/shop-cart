@@ -4,6 +4,7 @@ import { Cart } from '../../models/cart.mode';
 import { Store } from '@ngrx/store';
 import { IStates } from 'src/app/redux/reducers';
 import { addProductToCart } from '../../redux/actions/cart.actions';
+import { NotifyService } from 'src/app/services/notify.service';
 
 @Component({
   selector: 'app-cards',
@@ -14,7 +15,7 @@ export class CardsComponent implements OnInit {
   @Input() product: Product;
   @Input() cart!: Cart
 
-  constructor( private cartStore: Store<IStates> ) {
+  constructor( private cartStore: Store<IStates>, private message: NotifyService ) {
     this.product = initialProduct;
   }
 
@@ -22,11 +23,8 @@ export class CardsComponent implements OnInit {
   }
 
   add() {
-/*     const clone = { 
-      cart: Object.assign({}, this.cart),
-      product: Object.assign({}, this.product)
-    }; */
-    this.cartStore.dispatch(addProductToCart({cart: this.cart, product: this.product}))
+    this.cartStore.dispatch(addProductToCart({cart: this.cart, product: this.product}));
+    this.message.infoNotification('Producto agregado al carrito', this.product.name);
   }
 
 }

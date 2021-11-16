@@ -60,6 +60,7 @@ export class ProductService {
   }
 
   public async reduceProductFromCart( cart: Cart, product: Product ): Promise<void> {
+    if( cart.products[product.id] == 0 ) return
     return this.firestore.collection('users').doc(this.userID).collection('carts').doc(cart.id)
       .set({"products": {[product.id]: firebase.firestore.FieldValue.increment(-1) }}, {merge: true});
   }

@@ -1,5 +1,6 @@
 import { authReducer, AuthState } from './auth.reducer';
 import { cartReducer, CartState } from './cart.reducer';
+import { productReducer, ProductState } from './product.reducer';
 
 /**
  * Agregar aca los reducers para importarlo en el modulo
@@ -7,6 +8,7 @@ import { cartReducer, CartState } from './cart.reducer';
 export const reducers = {
   authReducer,
   cartReducer,
+  productReducer
 };
 
 /**
@@ -14,5 +16,6 @@ export const reducers = {
  */
 export interface IStates{
   authReducer: AuthState;
-  cartReducer: CartState
+  cartReducer: CartState;
+  productReducer: ProductState;
 }

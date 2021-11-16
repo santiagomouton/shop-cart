@@ -1,1 +1,38 @@
-<p>{{ cart?.products }}</p>
+<div class="container">
+    <ul class="responsive-table">
+        <div *ngIf="products.length != 0" class="col-4 buy-container">
+            <button mat-raised-button class="b_grl b_success" (click)="buy()">Finalizar Compra</button>
+        </div>
+        <div *ngIf="products.length == 0 && !loading" class="col-4 title-container">
+            <p class="title">Carro de compras vacio!</p>
+        </div>
+        <li
+          *ngFor="let product of products"
+          class="table-row"
+        >
+          <div class="col-4" data-label="Name">{{ product.name }}</div>
+          <div class="col-4" data-label="Image"><img [src]="product.image" [alt]="product.name"></div>
+          <div class="col-4" data-label="Total Price">${{ product.price * cart.products[product.id] }}</div>
+          <section class="col-4" data-label="actions">
+            <button mat-raised-button
+              class="b_primary btn_min"
+              style="margin-right: 10px"
+              [disabled]="cart.products[product.id] == 0"
+              (click)="decreaseQuantity(product)"
+            >
+              <mat-icon aria-hidden="false">remove_circle</mat-icon>
+            </button>
+            <button mat-raised-button
+              class="btn_min"
+              style="margin-right: 10px">  {{ cart.products[product.id] }}
+            </button>
+            <button mat-raised-button
+              class="b_danger btn_min"
+              (click)="increaseQuantity(product)"
+            >
+              <mat-icon aria-hidden="false">add_circle</mat-icon>
+            </button>
+          </section>
+        </li>
+    </ul>
+  </div>

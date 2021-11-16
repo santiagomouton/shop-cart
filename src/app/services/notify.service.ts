@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import {
+  ConfirmBoxInitializer,
   DialogLayoutDisplay,
+  IConfirmBoxPublicResponse,
   ToastNotificationInitializer,
   ToastPositionEnum,
   ToastProgressBarEnum,
@@ -18,12 +21,13 @@ export class NotifyService {
     notification.setTitle( title );
     notification.setMessage( message );
     notification.setConfig({
-      AutoCloseDelay: 3000,
+      AutoCloseDelay: 4000,
       TextPosition: 'left',
       ProgressBar: ToastProgressBarEnum.NONE,
       ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
       ToastPosition: ToastPositionEnum.BOTTOM_LEFT,
     })
+    
   }
 
   public infoNotification( title: string, message: string ): void {
@@ -45,6 +49,23 @@ export class NotifyService {
     this.setInitContent( title, message, notification );
     notification.setConfig({ LayoutType: DialogLayoutDisplay.WARNING })
     notification.openToastNotification$();
+  }
+
+  confirmBox(): Observable<IConfirmBoxPublicResponse>{
+    const newConfirmBox = new ConfirmBoxInitializer();
+
+    newConfirmBox.setTitle('Todo listo');
+    newConfirmBox.setMessage('Enviar carrito o desea seguir viendo productos');
+
+    // Choose layout color type
+    newConfirmBox.setConfig({
+      LayoutType: DialogLayoutDisplay.INFO,
+      ConfirmLabel: 'Confirmar carrito',
+      DeclineLabel: 'Seguir comprando'
+    });
+
+    // Simply open the popup
+    return newConfirmBox.openConfirmBox$();
   }
 
 }

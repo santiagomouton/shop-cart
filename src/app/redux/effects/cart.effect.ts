@@ -35,7 +35,7 @@ export class CartEffect {
   addProductToCart$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(cartActions.addProductToCart),
-      mergeMap(async (action) => {  console.log('entro al add');
+      mergeMap(async (action) => {
         return this.productService
           .addProductToCart(action.cart, action.product)
           .then(() => cartActions.loadCart())
@@ -45,7 +45,7 @@ export class CartEffect {
   });
 
   reduceProductFromCart$ = createEffect(() => {
-    return this.actions$.pipe(
+    return this.actions$.pipe( 
       ofType(cartActions.reduceProductFromCart),
       mergeMap(async (action) => {
         return this.productService
@@ -78,7 +78,7 @@ export class CartEffect {
       mergeMap(async (action) => {
         return this.productService
           .buyProductsFromCart(action.cart)
-          .then(() => cartActions.buyProductsFromCartSuccess())
+          .then(() => cartActions.loadCart())
           .catch((e) =>
             cartActions.buyProductsFromCartError({ error: `${e}` })
           );

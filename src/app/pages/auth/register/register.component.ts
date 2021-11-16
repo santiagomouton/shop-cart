@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
       key: 'password',
       type: 'input',
       templateOptions: {
+        type: 'password',
         label: 'Contraseña',
         placeholder: 'Ingresa contraseña',
         required: true,
@@ -58,11 +59,12 @@ export class RegisterComponent implements OnInit {
     }
   ];
 
+  // Mensaje de registro exitoso y navegacion al login para iniciar sesion
   onSubmit() {
     this.authService.register(this.iuser)
     .then( res => {
       if(res) { 
-        this.message.successNotification('Registro exitoso!', 'Ahora puede acceder a nuestros productos')
+        this.message.successNotification('Registro exitoso!', 'Ahora acceda con el email y la contraseña')
         this.router.navigate(['/login']);
       } else {
         this.message.infoNotification('Ooooops!', 'Ah ocurrido un error, intente mas tarde nuevamente')

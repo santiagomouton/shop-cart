@@ -1,7 +1,8 @@
 <div class="shadow-container">
+    <p class="title">Iniciar Sesion</p>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
         <formly-form [form]="form" [fields]="fields" [model]="iuser" [options]="options"></formly-form>
-        <button mat-button type="submit" class="b_grl b_primary">Ingresar</button>
-        <button mat-button type="button" class="b_grl b_success" [routerLink]="['/register']">Nuevo usuario</button>
+        <button mat-button type="submit" class="b_grl b_primary b_submit">Ingresar</button>
+        <button mat-button type="button" class="b_grl" [routerLink]="['/register']">Nuevo usuario</button>
     </form>
 </div>

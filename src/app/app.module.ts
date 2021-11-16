@@ -13,11 +13,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmBoxConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule } from "@costlydeveloper/ngx-awesome-popup";
 
-// import { provideAuth,getAuth } from '@angular/fire/auth';
-// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-// import { provideDatabase,getDatabase } from '@angular/fire/database';
-// import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -71,11 +66,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
     ToastNotificationConfigModule.forRoot(), // Needed for instantiating toast notifications.
     ConfirmBoxConfigModule.forRoot(),
     StoreModule.forRoot( reducers ),
-    EffectsModule.forRoot(effectsArr),
-    // provideFirebaseApp(() => initializeApp(environment.firebase)),
-    // provideAuth(() => getAuth()),
-    // provideDatabase(() => getDatabase()),
-    // provideFirestore(() => getFirestore())
+    EffectsModule.forRoot(effectsArr)
   ],
   providers: [],
   bootstrap: [AppComponent]

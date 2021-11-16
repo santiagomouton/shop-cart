@@ -26,8 +26,10 @@ export class AuthService {
     }).catch(error => this.message.infoNotification('Ooops!', 'Ah ocurrido un error'));
   }
 
-  async login( user: IUser ): Promise<any> {
+  async login( user: IUser ): Promise<boolean> {
     return await this.afAuth.signInWithEmailAndPassword(user.email, user.password)
+      .then( success => true)
+      .catch( err => false )
   }
 
   public checkAuth(): Observable<any> {

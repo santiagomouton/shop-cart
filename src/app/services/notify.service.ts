@@ -14,44 +14,50 @@ import {
   providedIn: 'root',
 })
 export class NotifyService {
+  constructor() {}
 
-  constructor() { }
-
-  private setInitContent( title: string, message: string, notification: ToastNotificationInitializer ) {
-    notification.setTitle( title );
-    notification.setMessage( message );
+  private setInitContent(
+    title: string,
+    message: string,
+    notification: ToastNotificationInitializer
+  ) {
+    notification.setTitle(title);
+    notification.setMessage(message);
     notification.setConfig({
       AutoCloseDelay: 4000,
       TextPosition: 'left',
       ProgressBar: ToastProgressBarEnum.NONE,
       ToastUserViewType: ToastUserViewTypeEnum.SIMPLE,
       ToastPosition: ToastPositionEnum.BOTTOM_LEFT,
-    })
-    
+    });
   }
 
-  public infoNotification( title: string, message: string ): void {
+  public infoNotification(title: string, message: string): void {
     let notification = new ToastNotificationInitializer();
-    this.setInitContent( title, message, notification );
-    notification.setConfig({ LayoutType: DialogLayoutDisplay.INFO })
+    this.setInitContent(title, message, notification);
+    notification.setConfig({ LayoutType: DialogLayoutDisplay.INFO });
     notification.openToastNotification$();
   }
 
-  public successNotification( title: string, message: string ): void {
+  public successNotification(title: string, message: string): void {
     let notification = new ToastNotificationInitializer();
-    this.setInitContent( title, message, notification );
-    notification.setConfig({ LayoutType: DialogLayoutDisplay.SUCCESS })
+    this.setInitContent(title, message, notification);
+    notification.setConfig({ LayoutType: DialogLayoutDisplay.SUCCESS });
     notification.openToastNotification$();
   }
 
-  public warningNotification( title: string, message: string ): void {
+  public warningNotification(title: string, message: string): void {
     let notification = new ToastNotificationInitializer();
-    this.setInitContent( title, message, notification );
-    notification.setConfig({ LayoutType: DialogLayoutDisplay.WARNING })
+    this.setInitContent(title, message, notification);
+    notification.setConfig({ LayoutType: DialogLayoutDisplay.WARNING });
     notification.openToastNotification$();
   }
 
-  confirmBox(): Observable<IConfirmBoxPublicResponse>{
+  /**
+   * Despliega un dialog para confirmacion o cancelacion de compra
+   * @returns suscripcion a Booleano que identifica la accion tomada
+   */
+  confirmBox(): Observable<IConfirmBoxPublicResponse> {
     const newConfirmBox = new ConfirmBoxInitializer();
 
     newConfirmBox.setTitle('Todo listo');
@@ -61,11 +67,10 @@ export class NotifyService {
     newConfirmBox.setConfig({
       LayoutType: DialogLayoutDisplay.INFO,
       ConfirmLabel: 'Confirmar carrito',
-      DeclineLabel: 'Seguir comprando'
+      DeclineLabel: 'Seguir comprando',
     });
 
     // Simply open the popup
     return newConfirmBox.openConfirmBox$();
   }
-
 }
